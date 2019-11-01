@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Form, Modal, Segment, Icon } from "semantic-ui-react";
+import { Button, Form, Modal, Segment, Icon, Input } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { addTodo } from "../actions/todoActions";
 
@@ -54,7 +54,7 @@ class TodoModal extends Component {
           </Button>
         }
       >
-        <Modal.Header>I want to to do..</Modal.Header>
+        <Modal.Header>I want to do..</Modal.Header>
         <Modal.Description>
           <Form style={{ padding: "20px" }}>
             {invalidInputError ? (
@@ -64,7 +64,7 @@ class TodoModal extends Component {
               </Segment>
             ) : null}
             <Form.Field>
-              <input
+              <Input
                 type="text"
                 name="todoContent"
                 id="todo"
