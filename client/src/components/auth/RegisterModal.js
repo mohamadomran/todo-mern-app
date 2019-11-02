@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import {
   Button,
@@ -9,9 +10,10 @@ import {
   Segment,
   Icon
 } from "semantic-ui-react";
-import { connect } from "react-redux";
 
 import PropTypes from "prop-types";
+
+//actions
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 class RegisterModal extends Component {

@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+
+//actions
 import { logout } from "../../actions/authActions";
+
 import { Menu } from "semantic-ui-react";
 
 import PropTypes from "prop-types";

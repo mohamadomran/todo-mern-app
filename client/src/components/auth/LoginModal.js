@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import {
   Button,
@@ -9,11 +10,13 @@ import {
   Segment,
   Icon
 } from "semantic-ui-react";
-import { connect } from "react-redux";
 
 import PropTypes from "prop-types";
+
+//actions
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+
 class LoginModal extends Component {
   state = {
     showModal: false,
@@ -35,9 +38,7 @@ class LoginModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
     const { email, password } = this.state;
-
     const user = {
       email,
       password
@@ -48,9 +49,8 @@ class LoginModal extends Component {
   };
 
   closeModal = () => {
-    //Clearing Erros
+    //Clearing Errors
     this.props.clearErrors();
-
     this.setState({ showModal: false });
   };
 

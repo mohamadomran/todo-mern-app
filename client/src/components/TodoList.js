@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { Container, Segment, Button, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
+
+import { Container, Segment, Button, Header } from "semantic-ui-react";
+
+//actions
 import { getTodos, deleteTodo } from "../actions/todoActions";
 
 import PropTypes from "prop-types";

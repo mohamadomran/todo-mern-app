@@ -9,7 +9,10 @@ import {
   Input,
   Header
 } from "semantic-ui-react";
+
 import { connect } from "react-redux";
+
+//actions
 import { addTodo } from "../actions/todoActions";
 
 import PropTypes from "prop-types";

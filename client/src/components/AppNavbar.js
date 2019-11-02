@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 
 import { Menu } from "semantic-ui-react";
-import { connect } from "react-redux";
+
 import PropTypes from "prop-types";
 
+//Components
 import RegisterModal from "../components/auth/RegisterModal";
 import LoginModal from "../components/auth/LoginModal";
-
 import Logout from "../components/auth/Logout";
 
 class AppNavbar extends Component {
