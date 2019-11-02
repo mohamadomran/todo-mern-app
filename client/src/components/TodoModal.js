@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 
-import { Button, Form, Modal, Segment, Icon, Input } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Modal,
+  Segment,
+  Icon,
+  Input,
+  Header
+} from "semantic-ui-react";
 import { connect } from "react-redux";
 import { addTodo } from "../actions/todoActions";
+
+import PropTypes from "prop-types";
 
 class TodoModal extends Component {
   state = {
     showModal: false,
     invalidInputError: false,
     todoContent: ""
+  };
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool
   };
 
   onChange = e => {
@@ -45,13 +59,17 @@ class TodoModal extends Component {
         onClose={this.closeModal}
         open={this.state.showModal}
         trigger={
-          <Button
-            onClick={() => this.setState({ showModal: true })}
-            floated="right"
-            color="blue"
-          >
-            Add a Todo
-          </Button>
+          this.props.isAuthenticated ? (
+            <Button
+              onClick={() => this.setState({ showModal: true })}
+              floated="right"
+              color="blue"
+            >
+              Add a Todo
+            </Button>
+          ) : (
+            <Header> Please login to manage Items</Header>
+          )
         }
       >
         <Modal.Header>I want to do..</Modal.Header>
@@ -90,7 +108,8 @@ class TodoModal extends Component {
 }
 
 const mapStateToProps = state => ({
-  todo: state.todo
+  todo: state.todo,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(

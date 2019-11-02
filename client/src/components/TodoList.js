@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Container, Segment, Button } from "semantic-ui-react";
+import { Container, Segment, Button, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { getTodos, deleteTodo } from "../actions/todoActions";
+
+import PropTypes from "prop-types";
 
 class TodoList extends Component {
   componentDidMount() {
@@ -12,20 +14,32 @@ class TodoList extends Component {
     this.props.deleteTodo(id);
   };
 
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+    getTodos: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+  };
+
   render() {
     const { todos } = this.props.todo;
+    const { isAuthenticated, user } = this.props.auth;
     return (
       <Container style={{ paddingTop: "5rem" }}>
+        {isAuthenticated ? (
+          <Header size="huge">Welcome, {user.name}</Header>
+        ) : null}
         {todos.map(({ _id, todoContent }) => (
           <Segment key={_id}>
-            <Button
-              floated="right"
-              circular
-              size="mini"
-              color="red"
-              icon="delete"
-              onClick={this.onDeleteClick.bind(this, _id)}
-            ></Button>
+            {this.props.isAuthenticated ? (
+              <Button
+                floated="right"
+                circular
+                size="mini"
+                color="red"
+                icon="delete"
+                onClick={this.onDeleteClick.bind(this, _id)}
+              />
+            ) : null}
             Task: {todoContent}
           </Segment>
         ))}
@@ -35,7 +49,8 @@ class TodoList extends Component {
 }
 
 const mapStateToProps = state => ({
-  todo: state.todo
+  todo: state.todo,
+  auth: state.auth
 });
 
 export default connect(

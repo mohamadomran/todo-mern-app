@@ -1,17 +1,42 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import { Menu } from "semantic-ui-react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import RegisterModal from "../components/auth/RegisterModal";
+import LoginModal from "../components/auth/LoginModal";
+
+import Logout from "../components/auth/Logout";
+
 class AppNavbar extends Component {
   state = {
     activeItem: "home"
+  };
+
+  static propTypes = {
+    auth: PropTypes.object.isRequired
   };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
     const { activeItem } = this.state;
+    const { isAuthenticated } = this.props.auth;
+
+    const authLinks = (
+      <Fragment>
+        <Logout />
+      </Fragment>
+    );
+
+    const guestLinks = (
+      <Fragment>
+        <RegisterModal />
+        <LoginModal />
+      </Fragment>
+    );
+
     return (
       <div style={{ paddingBottom: "20px" }}>
         <Menu pointing secondary>
@@ -22,7 +47,7 @@ class AppNavbar extends Component {
           />
 
           <Menu.Menu position="right">
-            <RegisterModal />
+            {isAuthenticated ? authLinks : guestLinks}
           </Menu.Menu>
         </Menu>
       </div>
@@ -30,4 +55,11 @@ class AppNavbar extends Component {
   }
 }
 
-export default AppNavbar;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(AppNavbar);

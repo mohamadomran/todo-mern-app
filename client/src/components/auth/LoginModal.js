@@ -12,12 +12,11 @@ import {
 import { connect } from "react-redux";
 
 import PropTypes from "prop-types";
-import { register } from "../../actions/authActions";
+import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
-class RegisterModal extends Component {
+class LoginModal extends Component {
   state = {
     showModal: false,
-    name: "",
     email: "",
     password: "",
     msg: null
@@ -26,7 +25,7 @@ class RegisterModal extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
-    register: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
   };
 
@@ -37,16 +36,15 @@ class RegisterModal extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
+    const { email, password } = this.state;
 
-    const newUser = {
-      name,
+    const user = {
       email,
       password
     };
 
-    //Attempt to register
-    this.props.register(newUser);
+    //Attempt to login
+    this.props.login(user);
   };
 
   closeModal = () => {
@@ -60,7 +58,7 @@ class RegisterModal extends Component {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       //Check for a register error
-      if (error.id === "REGISTER_FAIL") {
+      if (error.id === "LOGIN_FAIL") {
         this.setState({ msg: error.msg.msg });
       } else {
         this.setState({ msg: null });
@@ -81,7 +79,7 @@ class RegisterModal extends Component {
         open={this.state.showModal}
         trigger={
           <Menu.Item
-            name="register"
+            name="login"
             onClick={() => this.setState({ showModal: true })}
           />
         }
@@ -96,14 +94,6 @@ class RegisterModal extends Component {
               </Segment>
             ) : null}
             <Form.Field required>
-              <label for="name">Name</label>
-              <Input
-                type="text"
-                name="name"
-                id="name"
-                onChange={this.onChange}
-                placeholder="Enter your Name.."
-              />
               <label style={{ paddingTop: "15px" }} for="email">
                 E-mail
               </label>
@@ -132,7 +122,7 @@ class RegisterModal extends Component {
                 type="submit"
                 onClick={e => this.onSubmit(e)}
               >
-                Register
+                Login
               </Button>
             </div>
           </Form>
@@ -149,5 +139,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors }
-)(RegisterModal);
+  { login, clearErrors }
+)(LoginModal);
