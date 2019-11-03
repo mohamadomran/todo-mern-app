@@ -33,7 +33,7 @@ class TodoList extends Component {
         ) : null}
         {todos.map(({ _id, todoContent }) => (
           <Segment key={_id}>
-            {this.props.isAuthenticated ? (
+            {isAuthenticated ? (
               <Button
                 floated="right"
                 circular
@@ -43,7 +43,7 @@ class TodoList extends Component {
                 onClick={this.onDeleteClick.bind(this, _id)}
               />
             ) : null}
-            <i>Task:</i> {todoContent}
+            Task: {todoContent}
           </Segment>
         ))}
       </Container>
