@@ -43,7 +43,7 @@ class TodoList extends Component {
                 onClick={this.onDeleteClick.bind(this, _id)}
               />
             ) : null}
-            Task: {todoContent}
+            <i>Task:</i> {todoContent}
           </Segment>
         ))}
       </Container>
