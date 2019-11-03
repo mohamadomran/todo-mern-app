@@ -26,9 +26,11 @@ app.use("/api/todos", require("./routes/api/todos"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 
-//Serve static assets if in production
-app.use(express.static(path.join(__dirname, "client/build")));
+//set static folder
+app.use(express.static("client/build"));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 const port = 5000;
-
 app.listen(port, () => console.log(`Server started on port ${port}`));
