@@ -6,9 +6,9 @@ import { Menu } from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 //Components
-import RegisterModal from "../components/auth/RegisterModal";
-import LoginModal from "../components/auth/LoginModal";
-import Logout from "../components/auth/Logout";
+import RegisterModal from "./auth/RegisterModal";
+import LoginModal from "./auth/LoginModal";
+import Logout from "./auth/Logout";
 
 class AppNavbar extends Component {
   state = {

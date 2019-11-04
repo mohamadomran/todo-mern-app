@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AppNavbar from "./components/AppNavbar";
-import TodoList from "./components/TodoList";
-import TodoModal from "./components/TodoModal";
+import AppNavbar from "./App/AppNavbar";
+import TodoList from "./App/TodoList";
+import TodoModal from "./App/TodoModal";
 
 import { Provider } from "react-redux";
 import store from "./store";
