@@ -71,7 +71,7 @@ class TodoModal extends Component {
               Add a Todo
             </Button>
           ) : (
-            <Header> Please login to manage Items</Header>
+            <Header> Please login to manage Todos</Header>
           )
         }
       >
