@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 
-import {
-  Button,
-  Form,
-  Modal,
-  Segment,
-  Icon,
-  Input,
-  Header
-} from "semantic-ui-react";
+// import {
+//   Button,
+//   Form,
+//   Modal,
+//   Segment,
+//   Icon,
+//   Input,
+//   Header
+// } from "semantic-ui-react";
 
 import { connect } from "react-redux";
+
+import Modal from "../Components/Modal";
 
 //actions
 import { addTodo } from "../actions/todoActions";
@@ -33,79 +35,57 @@ class TodoModal extends Component {
   };
 
   onSubmit = e => {
+    console.log(e);
+    debugger;
     e.preventDefault();
 
-    if (this.state.todoContent !== "") {
-      const newTodo = {
-        todoContent: this.state.todoContent
-      };
+    const newTodo = {
+      todoContent: this.state.todoContent
+    };
 
-      // Add todo via addTodo action
-      this.props.addTodo(newTodo);
-      this.setState({ invalidInputError: false });
-      // Close modal
-      this.closeModal();
-    } else {
-      this.setState({ invalidInputError: true });
-    }
-  };
-
-  closeModal = () => {
-    this.setState({ showModal: false });
+    // Add todo via addTodo action
+    this.props.addTodo(newTodo);
+    this.setState({ invalidInputError: false });
+    // Close modal
   };
 
   render() {
-    const { invalidInputError } = this.state;
+    const triggerModal = {
+      buttonMode: true,
+      color: "blue",
+      floated: "right",
+      label: "Add a Todo",
+      alternative: "Please login to manage Todos"
+    };
+
+    const modalContent = {
+      header: "I want to do..",
+      invalidError: "You can't leave it empty!"
+    };
+
+    const modalForm = [
+      {
+        type: "text",
+        name: "todoContent",
+        id: "todo",
+        placeholder: "So, what's the task?"
+      }
+    ];
+
+    const modalSubmitButton = {
+      float: "right",
+      label: "Add"
+    };
+
     return (
       <Modal
-        closeIcon
-        onClose={this.closeModal}
-        open={this.state.showModal}
-        trigger={
-          this.props.isAuthenticated ? (
-            <Button
-              onClick={() => this.setState({ showModal: true })}
-              floated="right"
-              color="blue"
-            >
-              Add a Todo
-            </Button>
-          ) : (
-            <Header> Please login to manage Todos</Header>
-          )
-        }
-      >
-        <Modal.Header>I want to do..</Modal.Header>
-        <Modal.Description>
-          <Form style={{ padding: "20px" }}>
-            {invalidInputError ? (
-              <Segment inverted color="red" secondary>
-                <Icon name="warning" />
-                You can't leave it empty!
-              </Segment>
-            ) : null}
-            <Form.Field>
-              <Input
-                type="text"
-                name="todoContent"
-                id="todo"
-                onChange={this.onChange}
-                placeholder="So, what's the task?"
-              />
-            </Form.Field>
-            <div style={{ paddingBottom: "30px" }}>
-              <Button
-                positive
-                floated="right"
-                type="submit"
-                onClick={e => this.onSubmit(e)}
-              >
-                Add
-              </Button>
-            </div>
-          </Form>
-        </Modal.Description>
-      </Modal>
+        triggerModal={triggerModal}
+        modalContent={modalContent}
+        modalSubmitButton={modalSubmitButton}
+        modalForm={modalForm}
+        modalFormOnChange={this.onChange}
+        modalSubmitonClick={this.onSubmit}
+      />
     );
   }
 }
