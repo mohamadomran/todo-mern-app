@@ -1,14 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const config = require("config");
 const path = require("path");
 const app = express();
+require("dotenv").config();
 
 // Bodyparser Middleware
 app.use(express.json());
 
 // DB Config
-const db = config.get("mongoURI");
+const db = require("./config/keys").mongoURI;
 
 // Connect to Mongo
 mongoose

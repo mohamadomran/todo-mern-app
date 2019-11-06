@@ -4,7 +4,9 @@ const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
+require("dotenv").config();
 
+const jwtSecret = require("../../config/keys").jwtSecret;
 // Todo Model
 const User = require("../../models/User");
 
@@ -27,7 +29,7 @@ router.post("/", (req, res) => {
 
       jwt.sign(
         { id: user.id },
-        config.get("jwtSecret"),
+        jwtSecret,
         {
           expiresIn: 3600
         },
