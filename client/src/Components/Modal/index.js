@@ -11,6 +11,8 @@ import {
   Header
 } from "semantic-ui-react";
 
+import "./styles.scss";
+
 class ModalComponent extends Component {
   state = {
     showModal: false
@@ -32,7 +34,12 @@ class ModalComponent extends Component {
   };
 
   render() {
-    const { triggerModal, modalContent, modalForm } = this.props;
+    const {
+      triggerModal,
+      modalContent,
+      modalForm,
+      modalSubmitButton
+    } = this.props;
     return (
       <Modal
         closeIcon
@@ -59,7 +66,7 @@ class ModalComponent extends Component {
       >
         <Modal.Header>{modalContent.header}</Modal.Header>
         <Modal.Description>
-          <Form>
+          <Form className="ModalForm">
             {modalContent.invalidError ? (
               <Segment inverted color="red" secondary>
                 <Icon name="warning" />
@@ -84,18 +91,15 @@ class ModalComponent extends Component {
                 </div>
               ))}
             </Form.Field>
-            <Button
-              positive
-              floated={this.props.modalSubmitButton.float}
-              onClick={this.submitHandler}
-            >
-              {this.props.modalSubmitButton.label}
+            <Button floated={modalSubmitButton.float} onClick={this.closeModal}>
+              Cancel
             </Button>
             <Button
-              floated={this.props.modalSubmitButton.floatPosition}
-              onClick={this.closeModal}
+              positive
+              floated={modalSubmitButton.float}
+              onClick={this.submitHandler}
             >
-              Cancel
+              {modalSubmitButton.label}
             </Button>
           </Form>
         </Modal.Description>

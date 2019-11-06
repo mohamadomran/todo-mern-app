@@ -34,15 +34,13 @@ class TodoModal extends Component {
     this.setState({ todoContent });
   };
 
-  submitHandler = e => {
+  submitHandler = () => {
     const newTodo = {
       todoContent: this.state.todoContent
     };
 
-    // Add todo via addTodo action
     this.props.addTodo(newTodo);
     this.setState({ invalidInputError: false });
-    // Close modal
   };
 
   render() {
@@ -59,8 +57,10 @@ class TodoModal extends Component {
 
     const modalContent = {
       header: "I want to do..",
-      invalidError: "You can't leave it empty!"
+      invalidError: null
     };
+
+    // You can't leave it empty!
 
     const modalForm = [
       {
