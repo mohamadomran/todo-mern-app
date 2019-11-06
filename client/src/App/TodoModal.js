@@ -1,20 +1,8 @@
 import React, { Component } from "react";
-
-// import {
-//   Button,
-//   Form,
-//   Modal,
-//   Segment,
-//   Icon,
-//   Input,
-//   Header
-// } from "semantic-ui-react";
-
 import { connect } from "react-redux";
 
 import Modal from "../Components/Modal";
 
-//actions
 import { addTodo } from "../actions/todoActions";
 
 import PropTypes from "prop-types";
