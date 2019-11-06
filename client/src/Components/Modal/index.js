@@ -21,11 +21,18 @@ class ModalComponent extends Component {
     this.setState({ showModal: false });
   };
 
+  changeHandler = e => {
+    this.setState({ text: e.target.value });
+    this.props.modalFormOnChange(e.target.value);
+  };
+
+  submitHandler = () => {
+    this.props.modalSubmitonClick(this.state.text);
+    this.closeModal();
+  };
+
   render() {
-    console.log(this.props);
-
-    const { triggerModal } = this.props;
-
+    const { triggerModal, modalContent, modalForm } = this.props;
     return (
       <Modal
         closeIcon
@@ -40,27 +47,27 @@ class ModalComponent extends Component {
             >
               {triggerModal.label}
             </Button>
+          ) : triggerModal.menuMode ? (
+            <Menu.Item
+              name={triggerModal.menuItem.name}
+              onClick={() => this.setState({ showModal: true })}
+            />
           ) : (
-            //   ) : this.props.menuMode ? (
-            //     <Menu.Item
-            //       name={triggerModal.menuItem.name}
-            //       onClick={() => this.setState({ showModal: true })}
-            //     />
             <Header>{this.props.triggerModal.alternative}</Header>
           )
         }
       >
-        <Modal.Header>{this.props.modalContent.header}</Modal.Header>
+        <Modal.Header>{modalContent.header}</Modal.Header>
         <Modal.Description>
           <Form>
-            {this.props.modalContent.invalidError ? (
+            {modalContent.invalidError ? (
               <Segment inverted color="red" secondary>
                 <Icon name="warning" />
-                {this.props.modalContent.invalidError}
+                {modalContent.invalidError}
               </Segment>
             ) : null}
             <Form.Field>
-              {this.props.modalForm.map(modalInputSegment => (
+              {modalForm.map(modalInputSegment => (
                 <div>
                   {modalInputSegment.labelText ? (
                     <label for={modalInputSegment.labelFor}>
@@ -71,7 +78,7 @@ class ModalComponent extends Component {
                     type={modalInputSegment.type}
                     name={modalInputSegment.name}
                     id={modalInputSegment.id}
-                    onChange={this.props.modalFormOnChange}
+                    onChange={e => this.changeHandler(e)}
                     placeholder={modalInputSegment.placeholder}
                   />
                 </div>
@@ -80,7 +87,7 @@ class ModalComponent extends Component {
             <Button
               positive
               floated={this.props.modalSubmitButton.float}
-              onClick={() => this.sendData()}
+              onClick={this.submitHandler}
             >
               {this.props.modalSubmitButton.label}
             </Button>

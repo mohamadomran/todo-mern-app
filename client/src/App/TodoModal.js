@@ -30,15 +30,11 @@ class TodoModal extends Component {
     isAuthenticated: PropTypes.bool
   };
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  changeHandler = todoContent => {
+    this.setState({ todoContent });
   };
 
-  onSubmit = e => {
-    console.log(e);
-    debugger;
-    e.preventDefault();
-
+  submitHandler = e => {
     const newTodo = {
       todoContent: this.state.todoContent
     };
@@ -50,13 +46,16 @@ class TodoModal extends Component {
   };
 
   render() {
-    const triggerModal = {
-      buttonMode: true,
-      color: "blue",
-      floated: "right",
-      label: "Add a Todo",
-      alternative: "Please login to manage Todos"
-    };
+    const triggerModal = this.props.isAuthenticated
+      ? {
+          buttonMode: true,
+          color: "blue",
+          floated: "right",
+          label: "Add a Todo"
+        }
+      : {
+          alternative: "Please login to manage Todos"
+        };
 
     const modalContent = {
       header: "I want to do..",
@@ -83,8 +82,8 @@ class TodoModal extends Component {
         modalContent={modalContent}
         modalSubmitButton={modalSubmitButton}
         modalForm={modalForm}
-        modalFormOnChange={this.onChange}
-        modalSubmitonClick={this.onSubmit}
+        modalFormOnChange={this.changeHandler}
+        modalSubmitonClick={() => this.submitHandler()}
       />
     );
   }
