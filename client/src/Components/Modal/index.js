@@ -60,11 +60,6 @@ class ModalComponent extends Component {
             >
               {triggerModal.label}
             </Button>
-          ) : triggerModal.menuMode ? (
-            <Menu.Item
-              name={triggerModal.menuItem.name}
-              onClick={() => this.setState({ showModal: true })}
-            />
           ) : (
             <Header>{this.props.triggerModal.alternative}</Header>
           )

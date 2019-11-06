@@ -9,8 +9,6 @@ import PropTypes from "prop-types";
 
 class TodoModal extends Component {
   state = {
-    showModal: false,
-    invalidInputError: false,
     todoContent: ""
   };
 
@@ -28,7 +26,6 @@ class TodoModal extends Component {
     };
 
     this.props.addTodo(newTodo);
-    this.setState({ invalidInputError: false });
   };
 
   render() {
