@@ -57,10 +57,8 @@ class TodoModal extends Component {
 
     const modalContent = {
       header: "I want to do..",
-      invalidError: null
+      invalidError: "Can't submit an empty todo"
     };
-
-    // You can't leave it empty!
 
     const modalForm = [
       {

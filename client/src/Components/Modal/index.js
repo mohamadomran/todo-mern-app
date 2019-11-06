@@ -15,11 +15,11 @@ import "./styles.scss";
 
 class ModalComponent extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    errorDisplay: false
   };
 
   closeModal = () => {
-    // this.props.clearErrors();
     this.setState({ showModal: false });
   };
 
@@ -29,8 +29,14 @@ class ModalComponent extends Component {
   };
 
   submitHandler = () => {
-    this.props.modalSubmitonClick(this.state.text);
-    this.closeModal();
+    if (this.state.text) {
+      this.props.modalSubmitonClick(this.state.text);
+
+      this.closeModal();
+    } else {
+      this.setState({ errorDisplay: true });
+    }
+    this.setState({ text: null, errorDisplay: false });
   };
 
   render() {
@@ -67,7 +73,7 @@ class ModalComponent extends Component {
         <Modal.Header>{modalContent.header}</Modal.Header>
         <Modal.Description>
           <Form className="ModalForm">
-            {modalContent.invalidError ? (
+            {this.state.errorDisplay ? (
               <Segment inverted color="red" secondary>
                 <Icon name="warning" />
                 {modalContent.invalidError}

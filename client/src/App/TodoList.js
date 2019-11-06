@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import moment from "moment";
 import { Container, Segment, Button, Header } from "semantic-ui-react";
 
 //actions
@@ -24,6 +24,7 @@ class TodoList extends Component {
   };
 
   render() {
+    moment.locale("en-US");
     const { todos } = this.props.todo;
     const { isAuthenticated, user } = this.props.auth;
     return (
@@ -31,7 +32,7 @@ class TodoList extends Component {
         {isAuthenticated ? (
           <Header size="huge">Welcome, {user.name}</Header>
         ) : null}
-        {todos.map(({ _id, todoContent }) => (
+        {todos.map(({ _id, todoContent, date }) => (
           <Segment key={_id}>
             {isAuthenticated ? (
               <Button
@@ -43,7 +44,12 @@ class TodoList extends Component {
                 onClick={this.onDeleteClick.bind(this, _id)}
               />
             ) : null}
-            Task: {todoContent}
+            {todoContent}
+            <Header as="h5" textAlign="right">
+              <i>
+                <sup>Created at: {moment(date).calendar()}</sup>
+              </i>
+            </Header>
           </Segment>
         ))}
       </Container>
