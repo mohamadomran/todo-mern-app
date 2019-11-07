@@ -1,10 +1,12 @@
+import React, { Component } from "react";
 import _ from "lodash";
 
-import React, { Component } from "react";
-import { Search, Segment, Button, Header } from "semantic-ui-react";
-import moment from "moment";
+import { Search } from "semantic-ui-react";
+
+import SegmentModule from "../Components/Segment";
+
 import { connect } from "react-redux";
-import { getTodos } from "../../actions/todoActions";
+import { getTodos } from "../actions/todoActions";
 
 class SearchExampleStandard extends Component {
   state = { isLoading: false, results: [], value: "" };
@@ -13,10 +15,8 @@ class SearchExampleStandard extends Component {
     this.props.getTodos();
   }
 
-  handleResultSelect = (e, { result }) => {
-    console.log("result", result);
+  handleResultSelect = (e, { result }) =>
     this.setState({ value: result.todoContent });
-  };
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
@@ -25,12 +25,9 @@ class SearchExampleStandard extends Component {
       if (this.state.value.length < 1)
         return this.setState({ isLoading: false, results: [], value: "" });
 
-      console.log("this.state.value", this.state.value);
-
       const re = new RegExp(_.escapeRegExp(this.state.value), "i");
       const isMatch = result => re.test(result.todoContent);
 
-      console.log(this.props.todo.todos);
       this.setState({
         isLoading: false,
         results: _.filter(this.props.todo.todos, isMatch)
@@ -40,10 +37,11 @@ class SearchExampleStandard extends Component {
 
   render() {
     const { isLoading, value, results } = this.state;
-
+    console.log("results", results);
     return (
       <div>
         <Search
+          open={false}
           loading={isLoading}
           onResultSelect={this.handleResultSelect}
           onSearchChange={_.debounce(this.handleSearchChange, 500, {
@@ -51,26 +49,11 @@ class SearchExampleStandard extends Component {
           })}
           results={results}
           value={value}
-          {...this.props}
         />
-        {this.state.results.map(({ _id, todoContent, date }) => (
-          <Segment key={_id}>
-            <Button
-              floated="right"
-              circular
-              size="mini"
-              color="red"
-              icon="delete"
-              onClick={this.onDeleteClick.bind(this, _id)}
-            />
-
-            {todoContent}
-            <Header as="h5" textAlign="right">
-              <i>
-                <sup>Created at: {moment(date).calendar()}</sup>
-              </i>
-            </Header>
-          </Segment>
+        {results.map(todo => (
+          <div key={todo._id}>
+            <SegmentModule element={todo} />
+          </div>
         ))}
       </div>
     );

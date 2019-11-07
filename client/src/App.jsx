@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AppNavbar from "./App/AppNavbar";
 import TodoList from "./App/TodoList";
 import TodoModal from "./App/TodoModal";
-import SearchExampleStandard from "./Components/SearchBar";
+import SearchExampleStandard from "./App/SearchBar";
 import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/authActions";
