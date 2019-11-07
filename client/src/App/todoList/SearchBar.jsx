@@ -3,10 +3,10 @@ import _ from "lodash";
 
 import { Search } from "semantic-ui-react";
 
-import SegmentModule from "../Components/Segment";
+import SegmentModule from "../../Components/Segment";
 
 import { connect } from "react-redux";
-import { getTodos } from "../actions/todoActions";
+import { getTodos } from "../../actions/todoActions";
 
 class SearchExampleStandard extends Component {
   state = { isLoading: false, results: [], value: "" };

@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 
 import { Container, Header } from "semantic-ui-react";
 
-import SegmentModule from "../Components/Segment";
+import SegmentModule from "../../Components/Segment";
 
 //actions
-import { getTodos, deleteTodo } from "../actions/todoActions";
+import { getTodos, deleteTodo } from "../../actions/todoActions";
 
 import PropTypes from "prop-types";
 
@@ -29,7 +29,7 @@ class TodoList extends Component {
     const { todos } = this.props.todo;
     const { isAuthenticated, user } = this.props.auth;
     return (
-      <Container style={{ paddingTop: "5rem" }}>
+      <Container>
         {isAuthenticated ? (
           <Header size="huge">Welcome, {user.name}</Header>
         ) : null}
