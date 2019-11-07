@@ -1,5 +1,5 @@
 module.exports = {
   mongoURI:
-    "mongodb+srv://mohamad:mohamad123456@todo-app-jmeer.mongodb.net/test?retryWrites=true&w=majority",
+    .env,
   jwtSecret: "todo_list_jwt_Secret"
 };
