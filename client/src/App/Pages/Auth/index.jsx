@@ -17,7 +17,7 @@ const AuthenticationPage = () => (
           <Register />
         </Grid.Column>
       </Grid>
-      <Divider vertical>Or</Divider>
+      <Divider vertical />
     </Segment>
   </div>
 );

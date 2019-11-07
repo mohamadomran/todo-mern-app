@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { Container, Header } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 
 import SegmentModule from "../../Components/Segment";
 
@@ -27,12 +27,8 @@ class TodoList extends Component {
 
   render() {
     const { todos } = this.props.todo;
-    const { isAuthenticated, user } = this.props.auth;
     return (
       <Container>
-        {isAuthenticated ? (
-          <Header size="huge">Welcome, {user.name}</Header>
-        ) : null}
         {todos.map(todo => (
           <div key={todo._id}>
             <SegmentModule element={todo} />

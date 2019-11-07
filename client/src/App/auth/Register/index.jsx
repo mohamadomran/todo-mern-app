@@ -68,35 +68,44 @@ class RegisterModal extends Component {
           </Segment>
         ) : null}
         <Form.Field required>
-          <label for="name">Name</label>
+          <label className="label" for="name">
+            Name
+          </label>
           <Input
             type="text"
             name="name"
             id="name"
             onChange={this.onChange}
             placeholder="Enter your Name.."
+            className="Register-Input"
           />
-          <label for="email">E-mail</label>
+          <label className="label" for="email">
+            E-mail
+          </label>
           <Input
             type="email"
             name="email"
             id="email"
             onChange={this.onChange}
             placeholder="Enter your Email Address.."
+            className="Register-Input"
           />
-          <label for="password">Password</label>
+          <label className="label" for="password">
+            Password
+          </label>
           <Input
             type="password"
             name="password"
             id="password"
             onChange={this.onChange}
+            className="Register-Input"
             placeholder="Enter your Password.."
           />
         </Form.Field>
         <div>
           <Button
-            positive
-            floated="right"
+            primary
+            floated="left"
             type="submit"
             onClick={e => this.onSubmit(e)}
           >

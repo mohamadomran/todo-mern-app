@@ -45,7 +45,6 @@ class LoginModal extends Component {
   componentDidUpdate(prevProps) {
     const { error } = this.props;
     if (error !== prevProps.error) {
-      //Check for a register error
       if (error.id === "LOGIN_FAIL") {
         this.setState({ msg: error.msg.msg });
       } else {
@@ -65,33 +64,37 @@ class LoginModal extends Component {
               {msg}
             </Segment>
           ) : null}
-          <label for="email-login">E-mail</label>
+          <label className="label" for="email-login">
+            E-mail
+          </label>
           <Input
             type="email"
             name="email"
             id="email-login"
             onChange={this.onChange}
             placeholder="Enter your Email Address.."
+            className="Login-Input"
           />
-          <label for="password-login">Password</label>
+          <label className="label" for="password-login">
+            Password
+          </label>
           <Input
             type="password"
             name="password"
             id="password-login"
             onChange={this.onChange}
             placeholder="Enter your Password.."
+            className="Login-Input"
           />
         </Form.Field>
-        <div>
-          <Button
-            positive
-            floated="right"
-            type="submit"
-            onClick={e => this.onSubmit(e)}
-          >
-            Login
-          </Button>
-        </div>
+        <Button
+          primary
+          floated="left"
+          type="submit"
+          onClick={e => this.onSubmit(e)}
+        >
+          Login
+        </Button>
       </Form>
     );
   }
