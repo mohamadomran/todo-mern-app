@@ -2,15 +2,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
+const xssFilter = require("x-xss-protection");
 require("dotenv").config();
 
-// Bodyparser Middleware
+// Bodyparser Middleware and xss prevention
 app.use(express.json());
-
+app.use(xssFilter());
+app.use(xssFilter({ reportUri: "/report-xss-violation" }));
 // DB Config
 const db = require("./config/keys").mongoURI;
 
 // Connect to Mongo
+process.env.SUPPRESS_NO_CONFIG_WARNING = "y";
 mongoose
   .connect(db, {
     useNewUrlParser: true,
