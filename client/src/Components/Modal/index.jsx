@@ -53,6 +53,7 @@ class ModalComponent extends Component {
         trigger={
           triggerModal.buttonMode ? (
             <Button
+              size="medium"
               onClick={() => this.setState({ showModal: true })}
               color={triggerModal.color}
               floated={triggerModal.floated}
@@ -75,7 +76,7 @@ class ModalComponent extends Component {
             ) : null}
             <Form.Field>
               {modalForm.map(modalInputSegment => (
-                <div>
+                <div key={modalInputSegment.id}>
                   {modalInputSegment.labelText ? (
                     <label htmlFor={modalInputSegment.labelFor}>
                       {modalInputSegment.labelText}

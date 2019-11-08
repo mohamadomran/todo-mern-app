@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { Container } from "semantic-ui-react";
+import { Container, Header } from "semantic-ui-react";
 
 import SegmentModule from "../../Components/Segment";
 
@@ -29,13 +29,18 @@ class TodoList extends Component {
 
   render() {
     const { todos } = this.props.todo;
+    console.log(this.props.todo.todos);
     return (
       <Container>
-        {todos.map(todo => (
-          <div key={todo._id}>
-            <SegmentModule element={todo} />
-          </div>
-        ))}
+        {todos.length > 0 ? (
+          todos.map(todo => (
+            <div key={todo._id}>
+              <SegmentModule element={todo} />
+            </div>
+          ))
+        ) : (
+          <Header> No Todos yet :)</Header>
+        )}
       </Container>
     );
   }

@@ -7,7 +7,7 @@ import SearchList from "../../todoList/SearchBar";
 import "./styles.scss";
 
 const TodoListPage = () => (
-  <div className="Segment">
+  <div className="Segment-main-dev">
     <Segment>
       <SearchList />
       <Divider horizontal>

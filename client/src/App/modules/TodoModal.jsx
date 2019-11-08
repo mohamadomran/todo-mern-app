@@ -32,7 +32,7 @@ class TodoModal extends Component {
     const triggerModal = this.props.isAuthenticated
       ? {
           buttonMode: true,
-          color: "black",
+          color: "red",
           floated: "right",
           label: "Add a Todo"
         }

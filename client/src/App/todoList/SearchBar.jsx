@@ -8,6 +8,8 @@ import SegmentModule from "../../Components/Segment";
 import { connect } from "react-redux";
 import { getTodos } from "../../actions/todoActions";
 
+import "./styles.scss";
+
 class SearchExampleStandard extends Component {
   state = { isLoading: false, results: [], value: "" };
 
@@ -41,6 +43,8 @@ class SearchExampleStandard extends Component {
     return (
       <div>
         <Search
+          input={{ fluid: true }}
+          placeholder="Search for a todo.."
           open={false}
           loading={isLoading}
           onResultSelect={this.handleResultSelect}
@@ -50,15 +54,11 @@ class SearchExampleStandard extends Component {
           results={results}
           value={value}
         />
-        {results.length > 0 ? (
-          results.map(todo => (
-            <div key={todo._id}>
-              <SegmentModule element={todo} />
-            </div>
-          ))
-        ) : (
-          <div>No todos yet :)</div>
-        )}
+        {results.map(todo => (
+          <div key={todo._id}>
+            <SegmentModule element={todo} />
+          </div>
+        ))}
       </div>
     );
   }
