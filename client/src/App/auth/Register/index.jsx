@@ -68,7 +68,7 @@ class RegisterModal extends Component {
           </Segment>
         ) : null}
         <Form.Field required>
-          <label className="label" for="name">
+          <label className="label" htmlFor="name">
             Name
           </label>
           <Input
@@ -79,7 +79,7 @@ class RegisterModal extends Component {
             placeholder="Enter your Name.."
             className="Register-Input"
           />
-          <label className="label" for="email">
+          <label className="label" htmlFor="email">
             E-mail
           </label>
           <Input
@@ -90,7 +90,7 @@ class RegisterModal extends Component {
             placeholder="Enter your Email Address.."
             className="Register-Input"
           />
-          <label className="label" for="password">
+          <label className="label" htmlFor="password">
             Password
           </label>
           <Input

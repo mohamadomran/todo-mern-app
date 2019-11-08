@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Modal from "../Components/Modal";
+import Modal from "../../Components/Modal";
 
-import { addTodo } from "../actions/todoActions";
+import { addTodo } from "../../actions/todoActions";
 
 import PropTypes from "prop-types";
 
@@ -32,7 +32,7 @@ class TodoModal extends Component {
     const triggerModal = this.props.isAuthenticated
       ? {
           buttonMode: true,
-          color: "blue",
+          color: "black",
           floated: "right",
           label: "Add a Todo"
         }

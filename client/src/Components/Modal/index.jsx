@@ -6,7 +6,7 @@ import {
   Modal,
   Segment,
   Icon,
-  Input,
+  TextArea,
   Header
 } from "semantic-ui-react";
 
@@ -77,11 +77,11 @@ class ModalComponent extends Component {
               {modalForm.map(modalInputSegment => (
                 <div>
                   {modalInputSegment.labelText ? (
-                    <label for={modalInputSegment.labelFor}>
+                    <label htmlFor={modalInputSegment.labelFor}>
                       {modalInputSegment.labelText}
                     </label>
                   ) : null}
-                  <Input
+                  <TextArea
                     type={modalInputSegment.type}
                     name={modalInputSegment.name}
                     id={modalInputSegment.id}

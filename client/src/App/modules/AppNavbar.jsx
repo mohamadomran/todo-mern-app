@@ -6,7 +6,8 @@ import { Menu } from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 //Components
-import Logout from "./auth/Logout";
+import Logout from "../auth/Logout";
+import TodoModal from "./TodoModal";
 
 class AppNavbar extends Component {
   state = {
@@ -21,7 +22,10 @@ class AppNavbar extends Component {
 
   render() {
     return (
-      <Menu pointing secondary>
+      <Menu pointing size={"huge"} inverted>
+        <Menu.Menu position="left">
+          <TodoModal />
+        </Menu.Menu>
         <Menu.Menu position="right">
           <Logout />
         </Menu.Menu>

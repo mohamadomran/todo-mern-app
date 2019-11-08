@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import AuthenticationPage from "./Auth";
 import TodoList from "./Todo";
-import AppNavBar from "../AppNavbar";
+import AppNavBar from "../modules/AppNavbar";
 
 import PropTypes from "prop-types";
 

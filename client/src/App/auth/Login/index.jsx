@@ -64,7 +64,7 @@ class LoginModal extends Component {
               {msg}
             </Segment>
           ) : null}
-          <label className="label" for="email-login">
+          <label className="label" htmlFor="email-login">
             E-mail
           </label>
           <Input
@@ -75,7 +75,7 @@ class LoginModal extends Component {
             placeholder="Enter your Email Address.."
             className="Login-Input"
           />
-          <label className="label" for="password-login">
+          <label className="label" htmlFor="password-login">
             Password
           </label>
           <Input

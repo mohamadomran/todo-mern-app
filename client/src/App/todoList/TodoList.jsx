@@ -10,6 +10,8 @@ import { getTodos, deleteTodo } from "../../actions/todoActions";
 
 import PropTypes from "prop-types";
 
+import "./styles.scss";
+
 class TodoList extends Component {
   componentDidMount() {
     this.props.getTodos();

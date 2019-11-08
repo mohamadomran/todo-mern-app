@@ -50,11 +50,15 @@ class SearchExampleStandard extends Component {
           results={results}
           value={value}
         />
-        {results.map(todo => (
-          <div key={todo._id}>
-            <SegmentModule element={todo} />
-          </div>
-        ))}
+        {results.length > 0 ? (
+          results.map(todo => (
+            <div key={todo._id}>
+              <SegmentModule element={todo} />
+            </div>
+          ))
+        ) : (
+          <div>No todos yet :)</div>
+        )}
       </div>
     );
   }
